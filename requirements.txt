@@ -7,3 +7,4 @@ jinja2==2.11.2
 unstructured==0.7.10
 tiktoken==0.4.0
 pyaudio==0.2.13
+uvicorn==0.22.0
