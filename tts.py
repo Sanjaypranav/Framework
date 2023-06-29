@@ -11,6 +11,7 @@ from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import DirectoryLoader
+import uvicorn
 
 app = FastAPI()
 
@@ -99,7 +100,7 @@ async def record_audio(request: Request):
     with sr.Microphone() as source:
         print("Listening....")
         r.pause_threshold = 1
-        audio = r.record(source, duration=3)
+        audio = r.record(source, duration=5)
     try:
         print("Recognizing....")
         query = r.recognize_google(audio, language='en-in')
@@ -109,3 +110,6 @@ async def record_audio(request: Request):
         query = "None"
     ans =  get_answer(query)
     return {"Answer": ans}
+
+if __name__ == '__main__':
+  uvicorn.run(app, port=5000)
