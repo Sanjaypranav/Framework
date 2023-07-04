@@ -67,7 +67,7 @@ index_name = "index"
 index = Pinecone.from_documents(docs, embeddings, index_name=index_name)
 
 
-model_name = "text-davinci-002"
+model_name = "text-davinci-003"
 # model_name = "gpt-3.5-turbo"
 # model_name = "gpt-4"
 llm = OpenAI(model_name=model_name)
@@ -84,9 +84,11 @@ def get_similiar_docs(query,k=2,score=False):
 def get_answer(query):
   similar_docs = get_similiar_docs(query)
   # print(similar_docs)
-  answer =  chain.run(input_documents=similar_docs, question=query)
+  prompt = """
+        Use the following pieces of context to answer the question at the end. Greet the user back if any greeting message received. If you don't know the answer, just say that you are not aware about that, don't try to make up an answer.\n\n{context}\n\nQuestion: {question}\nHelpful Answer:
+    """
+  answer =  chain.run(input_documents=similar_docs, question=query, prompt=prompt)
   return  answer
-
 
 
 @app.get("/", response_class=HTMLResponse)

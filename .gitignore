@@ -5,3 +5,4 @@ test.py
 pyproject.toml
 .venv
 poetry.lock
+prompt.txt
