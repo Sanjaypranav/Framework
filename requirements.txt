@@ -1,6 +1,10 @@
 fastapi==0.98.0
 langchain==0.0.216
 openai==0.27.8
-pinecone==0.1.0
 pinecone_client==2.2.2
 SpeechRecognition==3.10.0
+jinja2==2.11.2
+unstructured==0.7.10
+tiktoken==0.4.0
+pyaudio==0.2.13
+uvicorn==0.22.0
